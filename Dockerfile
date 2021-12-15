@@ -1,5 +1,7 @@
 FROM centos:8
 
+MAINTAINER A.Kamis hi@ahmetkamis.com
+
 ENV container docker
 
 RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
