@@ -29,7 +29,7 @@ RUN yum -y update && \
 	vim \
 	supervisor
 
-# Files
+# Files & Permission
 COPY . /usr/share/nginx/laravel
 RUN chown -R nginx:nginx /usr/share/nginx/laravel
 
@@ -39,7 +39,6 @@ RUN mkdir /run/php-fpm/
 RUN chown -R nginx:nginx /var/lib/php
 
 # Confs
-
 RUN rm -f /etc/nginx/nginx.conf
 COPY ./docker/conf/nginx/nginx.conf /etc/nginx/nginx.conf
 
@@ -52,8 +51,7 @@ COPY ./docker/conf/nginx/laravel.conf /etc/nginx/conf.d/laravel.conf
 RUN rm -f /etc/supervisor/supervisord.conf
 COPY ./docker/conf/supervisord.conf /etc/supervisor/supervisord.conf
 
-# Entry
-
+# Entry point
 ADD ./docker/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
